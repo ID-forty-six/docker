@@ -11,6 +11,9 @@ if [ ! -d /var/lib/mysql/mysql ];then
     dpkg-reconfigure mysql-server-5.7
 fi
 
+# TODO: Phpmyadmin
+dpkg-reconfigure --frontend=noninteractive phpmyadmin
+
 mkdir -p /var/run/mysqld/
 chown -R mysql:mysql /var/run/mysqld 
 
@@ -25,8 +28,8 @@ mkdir -p /var/www/app/web/
 mkdir -p /var/www/log/
 chown -R www-data:www-data /var/www
 sed -i 's/set_real_ip_from 0.0.0.0;/set_real_ip_from '$NGINX_REALIP_PROXY';/' /etc/nginx/sites-available/default
-service php7.0-fpm start
-service php7.0-fpm stop
+service php7.1-fpm start
+service php7.1-fpm stop
 
 # initialize snmpd.conf file if not exist
 if [ ! -f /etc/snmp/snmpd.conf ]; then

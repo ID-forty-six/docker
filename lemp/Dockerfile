@@ -1,4 +1,4 @@
-# Ubuntu 16.04, Nginx, PHP7.0, PHP7.0-cli, Mysql 5.7, php-mongodb, snmpd, cron support.
+# Ubuntu 16.04, Nginx, PHP7.1, Mysql 5.7, php-mongodb, snmpd, cron support.
 
 FROM ubuntu:16.04
 
@@ -6,7 +6,7 @@ FROM ubuntu:16.04
 
 # ++ Supervisor install
 
-RUN apt update && apt install -y supervisor
+RUN apt update && apt install -y supervisor software-properties-common
 COPY supervisor/* /etc/supervisor/conf.d/
 
 # ++ Mysql 5.7
@@ -18,12 +18,17 @@ VOLUME /var/lib/mysql
 ADD set_mysql_auth.sh /set_mysql_auth.sh
 
 # ++ www server install 
-RUN apt update && apt install -y nginx php7.0-fpm php7.0-cli php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-mbstring php7.0-mysql php7.0-zip php7.0-xmlrpc php7.0-xml php7.0-curl php-mongodb curl
+RUN DEBIAN_FRONTEND=noninteractive LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
+RUN apt update
+RUN DEBIAN_FRONTEND=noninteractive apt install -y nginx curl \
+    php7.1-fpm php7.1-cli php7.1-mysql php7.1-gd php7.1-mcrypt php7.1-mbstring php7.1-mysql php7.1-zip php7.1-xmlrpc php7.1-xml php7.1-curl php7.1-bcmath php7.1-bz2 php-mongodb \
+    phpmyadmin
 
 # ++ config
-RUN sed -i 's/;cgi.fix_pathinfo/cgi.fix_pathinfo/' /etc/php/7.0/fpm/php.ini
-RUN sed -i 's/max_execution_time = 30/max_execution_time = 0/' /etc/php/7.0/cli/php.ini
-COPY default /etc/nginx/sites-available/default
+RUN sed -i 's/;cgi.fix_pathinfo/cgi.fix_pathinfo/' /etc/php/7.1/fpm/php.ini
+RUN sed -i 's/max_execution_time = 30/max_execution_time = 0/' /etc/php/7.1/cli/php.ini
+COPY nginx/* /etc/nginx/sites-available/
+RUN cd /etc/nginx/sites-enabled/ && ln -s ../sites-available/phpmyadmin
 
 # ++ volumes
 VOLUME /var/www/app/
@@ -31,6 +36,7 @@ VOLUME /var/www/log/
 
 # ++ ports
 EXPOSE 80
+EXPOSE 8080
 
 # ++ snmpd install
 

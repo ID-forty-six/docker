@@ -91,7 +91,7 @@ docker run --name=phpapp \
 
 *Packages:*
 
-Ubuntu 16.04, Nginx, PHP7.0-fpm, PHP7.0-cli, Mysql 5.7, php-mysql, php-mongodb, snmpd, cron support.
+Ubuntu 16.04, Nginx, PHP7.1, Mysql 5.7, php-mysql, php-mongodb, snmpd, cron support.
 
 *Sample command:*
 ```
