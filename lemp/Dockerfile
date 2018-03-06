@@ -20,7 +20,7 @@ ADD set_mysql_auth.sh /set_mysql_auth.sh
 # ++ www server install 
 RUN DEBIAN_FRONTEND=noninteractive LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
 RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install -y nginx curl \
+RUN DEBIAN_FRONTEND=noninteractive apt install -y mc nginx curl \
     php7.1-fpm php7.1-cli php7.1-mysql php7.1-gd php7.1-mcrypt php7.1-mbstring php7.1-mysql php7.1-zip php7.1-xmlrpc php7.1-xml php7.1-curl php7.1-bcmath php7.1-bz2 php-mongodb \
     phpmyadmin
 

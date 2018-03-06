@@ -8,7 +8,7 @@ server {
 
 	location /phpmyadmin/ {
 
-		root /usr/share/phpmyadmin;
+		root /usr/share/;
 
 		# Add index.php to the list if you are using PHP
 		index index.php index.html index.htm index.nginx-debian.html;
@@ -16,6 +16,9 @@ server {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
+
+		auth_basic "Admin Login";
+		auth_basic_user_file /etc/nginx/basic_auth;
 
 		location ~ \.php$ {
 			include snippets/fastcgi-php.conf;
