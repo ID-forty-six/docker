@@ -19,10 +19,16 @@ ADD set_mysql_auth.sh /set_mysql_auth.sh
 
 # ++ www server install 
 RUN DEBIAN_FRONTEND=noninteractive LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
-RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install -y mc nginx curl \
-    php7.1-fpm php7.1-cli php7.1-mysql php7.1-gd php7.1-mcrypt php7.1-mbstring php7.1-mysql php7.1-zip php7.1-xmlrpc php7.1-xml php7.1-curl php7.1-bcmath php7.1-bz2 php-mongodb \
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mc nginx curl \
+    php7.1 php7.1-fpm php7.1-cli php7.1-mysql php7.1-gd php7.1-mcrypt php7.1-mbstring \
+    php7.1-mysql php7.1-zip php7.1-xmlrpc php7.1-xml php7.1-curl php7.1-bcmath php7.1-bz2 php-mongodb \
     phpmyadmin
+
+# ++ NodeJS install
+RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
+RUN bash nodesource_setup.sh
+RUN apt-get install -y nodejs
 
 # ++ config
 RUN sed -i 's/;cgi.fix_pathinfo/cgi.fix_pathinfo/' /etc/php/7.1/fpm/php.ini
