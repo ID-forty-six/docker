@@ -14,8 +14,8 @@ mkdir -p /var/www/log/
 chown -R www-data:www-data /var/www
 
 # initialize required files
-service php7.0-fpm start
-service php7.0-fpm stop
+service php7.2-fpm start
+service php7.2-fpm stop
 
 # index file initialization if not exist
 
