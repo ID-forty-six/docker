@@ -10,7 +10,7 @@ RUN apt update && apt install -y supervisor
 COPY supervisor/* /etc/supervisor/conf.d/
 
 # ++ www server install 
-RUN apt update && apt install -y nginx php-fpm php-cli php-mysql php-gd php-mbstring php-zip php-xmlrpc php-xml php-curl php-intl php-mongodb curl wget gnupg npm
+RUN apt update && apt install -y nginx php-fpm php-cli php-mysql php-gd php-mbstring php-zip php-xmlrpc php-xml php-curl php-intl php-bcmath php-mongodb curl wget gnupg npm
 
 # ++ config
 RUN sed -i 's/;cgi.fix_pathinfo/cgi.fix_pathinfo/' /etc/php/7.2/fpm/php.ini
