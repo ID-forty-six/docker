@@ -12,6 +12,8 @@ docker build -t phpapp18:local phpapp18/
 
 docker build -t lemp:local lemp/
 
+docker build -t lemp18:local lemp18/
+
 docker build -t nagios:local nagios/
 
 docker build -t gemp:local gemp/

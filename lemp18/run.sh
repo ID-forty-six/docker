@@ -25,8 +25,8 @@ fi
 mkdir -p /var/www/log/
 chown -R www-data:www-data /var/www
 
-service php7.0-fpm start
-service php7.0-fpm stop
+service php7.2-fpm start
+service php7.2-fpm stop
 
 # initialize snmpd.conf file if not exist
 if [ ! -f /etc/snmp/snmpd.conf ]; then

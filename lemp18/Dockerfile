@@ -1,6 +1,6 @@
-# Ubuntu 16.04, Nginx, PHP7.0, PHP7.0-cli, Mysql 5.7, php-mongodb, snmpd, cron support.
+# Ubuntu 18.04, Nginx, PHP7.2, PHP7.2-cli, Mysql 5.7, php-mongodb, snmpd, cron support.
 
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 #ENV DEBIAN_FRONTEND noninteractive
 
@@ -9,20 +9,12 @@ FROM ubuntu:16.04
 RUN apt update && apt install -y supervisor
 COPY supervisor/* /etc/supervisor/conf.d/
 
-# ++ Mysql 5.7
-
-RUN DEBIAN_FRONTEND=noninteractive apt install -y mysql-server mysql-client
-
-VOLUME /var/lib/mysql
-
-ADD set_mysql_auth.sh /set_mysql_auth.sh
-
 # ++ www server install 
-RUN apt update && apt install -y nginx php7.0-fpm php7.0-cli php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-mbstring php7.0-mysql php7.0-zip php7.0-xmlrpc php7.0-xml php7.0-curl php-mongodb curl
+RUN apt update && apt install -y nginx php-fpm php-cli php-mysql php-gd php-mbstring php-zip php-xmlrpc php-xml php-curl php-intl php-mongodb curl wget gnupg
 
 # ++ config
-RUN sed -i 's/;cgi.fix_pathinfo/cgi.fix_pathinfo/' /etc/php/7.0/fpm/php.ini
-RUN sed -i 's/max_execution_time = 30/max_execution_time = 0/' /etc/php/7.0/cli/php.ini
+RUN sed -i 's/;cgi.fix_pathinfo/cgi.fix_pathinfo/' /etc/php/7.2/fpm/php.ini
+RUN sed -i 's/max_execution_time = 30/max_execution_time = 0/' /etc/php/7.2/cli/php.ini
 COPY default_yii2 /etc/nginx/sites-available/default_yii2
 COPY default_laravel /etc/nginx/sites-available/default_laravel
 
@@ -32,6 +24,13 @@ VOLUME /var/www/log/
 
 # ++ ports
 EXPOSE 80
+
+# ++ Mysql 5.7
+
+RUN DEBIAN_FRONTEND=noninteractive apt install -y mysql-server mysql-client
+RUN sed -i 's/127.0.0.1/0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
+VOLUME /var/lib/mysql
+ADD set_mysql_auth.sh /set_mysql_auth.sh
 
 # ++ snmpd install
 
@@ -48,6 +47,11 @@ EXPOSE 161/udp
 RUN apt update && apt install -y cron run-one
 RUN touch /etc/cron.d/app
 RUN chmod 0644 /etc/cron.d/app
+
+# ++ NodeJS install
+RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
+RUN bash nodesource_setup.sh
+RUN apt-get install -y nodejs
 
 VOLUME /etc/cron.d/
 

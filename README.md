@@ -108,7 +108,7 @@ docker run --name=phpapp \
 
 *Packages:*
 
-Ubuntu 16.04, Nginx, PHP7.1-fpm, PHP7.1-cli, Mysql 5.7, php-mysql, php-mongodb, snmpd, cron support.
+Ubuntu 16.04, Nginx, PHP7.0-fpm, PHP7.0-cli, Mysql 5.7, php-mysql, php-mongodb, snmpd, cron support.
 
 *Sample command:*
 ```
@@ -125,7 +125,7 @@ docker run --name=lemp \
     -e 'DB_NAME=dbname' \
     -e 'NGINX_REALIP_PROXY=172.17.0.1 \
     -e 'FRAMEWORK=laravel' \
-    ademas/docker:lemp
+    juozasl/docker:lemp
 ```
 
 ## lemp14
@@ -150,6 +150,30 @@ docker run --name=lemp14 \
     -e 'NGINX_REALIP_PROXY=172.17.0.1 \
     -e 'FRAMEWORK=laravel' \
     ademas/docker:lemp14
+```
+
+## lemp18
+
+*Packages:*
+
+Ubuntu 18.04, Nginx, PHP7.2-fpm, PHP7.2-cli, Mysql 5.7, php-mysql, php-mongodb, snmpd, cron support.
+
+*Sample command:*
+```
+docker run --name=lemp \
+    -v /home/mysql/:/var/lib/mysql \
+    -v /home/app/:/var/www/app \
+    -v /home/log/:/var/www/log \
+    -v /home/snmp/:/etc/snmp \
+    -v /home/cron/:/etc/cron.d \
+    -p 161:161 \
+    -p 80:80 \
+    -d -e 'DB_USER=dbuser' \
+    -e 'DB_PASS=dbpass' \
+    -e 'DB_NAME=dbname' \
+    -e 'NGINX_REALIP_PROXY=172.17.0.1 \
+    -e 'FRAMEWORK=laravel' \
+    juozasl/docker:lemp18
 ```
 
 ## gemp
