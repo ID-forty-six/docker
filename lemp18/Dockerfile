@@ -10,7 +10,7 @@ RUN apt update && apt install -y supervisor
 COPY supervisor/* /etc/supervisor/conf.d/
 
 # ++ www server install 
-RUN apt update && apt install -y nginx php-fpm php-cli php-mysql php-gd php-mbstring php-zip php-xmlrpc php-xml php-curl php-intl php-bcmath php-mongodb curl wget gnupg npm
+RUN apt update && apt install -y nginx php-fpm php-cli php-mysql php-gd php-mbstring php-zip php-xmlrpc php-xml php-curl php-intl php-bcmath php-mongodb curl wget gnupg
 
 # ++ config
 RUN sed -i 's/;cgi.fix_pathinfo/cgi.fix_pathinfo/' /etc/php/7.2/fpm/php.ini
@@ -48,12 +48,19 @@ RUN apt update && apt install -y cron run-one
 RUN touch /etc/cron.d/app
 RUN chmod 0644 /etc/cron.d/app
 
-# ++ NodeJS install
-RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
-RUN bash nodesource_setup.sh
-RUN apt-get install -y nodejs
-
 VOLUME /etc/cron.d/
+
+# ++ NodeJS ir npm install
+RUN apt update && apt-get install -y build-essential
+ENV NVM_VERSION v0.33.11
+ENV NODE_VERSION 9.8.0
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN apt-get update
+RUN apt-get -y install curl build-essential
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh | bash
+RUN source ~/.nvm/nvm.sh; \
+    nvm install $NODE_VERSION; \
+    nvm use --delete-prefix $NODE_VERSION;
 
 WORKDIR /var/www/app
 
