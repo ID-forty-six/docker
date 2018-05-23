@@ -4,6 +4,7 @@ set -e
 
 NGINX_REALIP_PROXY=${NGINX_REALIP_PROXY:-"172.17.0.1"}
 FRAMEWORK=${FRAMEWORK:-"yii2"}
+WEB_DIR=${WEB_DIR:-"/var/www"}
 
 # ++ Mysql
 
@@ -23,7 +24,7 @@ fi
 # ++ nginx & php-fpm
 
 mkdir -p /var/www/log/
-chown -R www-data:www-data /var/www
+chown -R www-data:www-data "$WEB_DIR"
 
 service php7.2-fpm start
 service php7.2-fpm stop
