@@ -51,16 +51,20 @@ RUN chmod 0644 /etc/cron.d/app
 VOLUME /etc/cron.d/
 
 # ++ NodeJS ir npm install
-RUN apt update && apt-get install -y build-essential
+RUN apt update && apt-get install -y build-essential git
+
 ENV NVM_VERSION v0.33.11
 ENV NODE_VERSION 9.8.0
+ENV NPM_VERSION 5.8.0
+
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update
 RUN apt-get -y install curl build-essential
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh | bash
 RUN source ~/.nvm/nvm.sh; \
     nvm install $NODE_VERSION; \
-    nvm use --delete-prefix $NODE_VERSION;
+    nvm use --delete-prefix $NODE_VERSION; \
+    npm i -g npm@$NPM_VERSION;
 
 WORKDIR /var/www/app
 
