@@ -42,7 +42,7 @@ fi
 
 # index file initialization if not exist
 
-if [ "$FRAMEWORK" == "yii2" -a "$WEB_DIR" == "/var/www" ]; then
+if [ "$FRAMEWORK" == "yii2" ]; then
 
     mkdir -p /var/www/app/web/
 
@@ -55,7 +55,7 @@ if [ "$FRAMEWORK" == "yii2" -a "$WEB_DIR" == "/var/www" ]; then
 
 fi
 
-if [ "$FRAMEWORK" == "laravel" -a "$WEB_DIR" == "/var/www" ]; then
+if [ "$FRAMEWORK" == "laravel" ]; then
 
     mkdir -p /var/www/app/public/
 
