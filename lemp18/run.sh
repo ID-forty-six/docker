@@ -63,7 +63,7 @@ if [ "$FRAMEWORK" == "laravel" ]; then
     cp /etc/nginx/sites-available/default_laravel /etc/nginx/sites-available/default
 
     # index file initialization if not exist
-    if [ ! -f /var/www/app/public/index.php ]; then
+    if [ ! -f "$WEB_DIR"/public/index.php ]; then
         echo "<?php echo 'container ...'; ?>" > "$WEB_DIR"/public/index.php
     fi
 
