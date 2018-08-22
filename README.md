@@ -91,13 +91,14 @@ docker run --name=phpapp \
 
 *Packages:*
 
-Ubuntu 18.04, Nginx, PHP7.2, php-mongodb, php-mysql, snmpd.
+Ubuntu 18.04, Nginx, PHP7.2, php-mongodb, php-mysql, snmpd, crons support.
 
 *Sample command:*
 ```
 docker run --name=phpapp \
     -v /home/app/:/var/www/app \
     -v /home/log/:/var/www/log \
+    -v /home/cron/:/etc/cron.d \
     -p 80:80 \
     -d -e 'NGINX_REALIP_PROXY=172.17.0.1 \
     -e 'FRAMEWORK=laravel' \
