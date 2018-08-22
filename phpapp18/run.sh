@@ -48,5 +48,11 @@ fi
 # ++ config real ip proxy
 sed -i 's/set_real_ip_from 0.0.0.0;/set_real_ip_from '$NGINX_REALIP_PROXY';/' /etc/nginx/sites-available/default
 
+# cron file initialize if not exist
+if [ ! -f /etc/cron.d/app ]; then
+    touch /etc/cron.d/app
+    chmod 0644 /etc/cron.d/app
+fi
+
 # super visor deamons start
 exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
