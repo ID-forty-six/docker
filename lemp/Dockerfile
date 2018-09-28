@@ -12,7 +12,7 @@ COPY supervisor/* /etc/supervisor/conf.d/
 # ++ Mysql 5.7
 
 RUN DEBIAN_FRONTEND=noninteractive apt install -y mysql-server mysql-client
-
+RUN sed -i 's/127.0.0.1/0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
 VOLUME /var/lib/mysql
 
 ADD set_mysql_auth.sh /set_mysql_auth.sh

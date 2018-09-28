@@ -126,7 +126,7 @@ docker run --name=lemp \
     -e 'DB_NAME=dbname' \
     -e 'NGINX_REALIP_PROXY=172.17.0.1 \
     -e 'FRAMEWORK=laravel' \
-    juozasl/docker:lemp
+    ademas/docker:lemp
 ```
 
 ## lemp14
@@ -174,7 +174,7 @@ docker run --name=lemp \
     -e 'DB_NAME=dbname' \
     -e 'NGINX_REALIP_PROXY=172.17.0.1 \
     -e 'FRAMEWORK=laravel' \
-    juozasl/docker:lemp18
+    ademas/docker:lemp18
 ```
 
 ## gemp
