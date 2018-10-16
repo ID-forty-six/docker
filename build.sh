@@ -23,3 +23,5 @@ docker build -t gemp18:local gemp18/
 docker build -t dbhost2:local dbhost2/
 
 docker build -t lemp14:local lemp14/
+
+docker build -t sender:local sender/
