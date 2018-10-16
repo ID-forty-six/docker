@@ -255,17 +255,16 @@ docker run --name=nagios \
 
 *Packages:*
 
-Ubuntu 16.04, Nginx, PHP7.0, php-mongodb, php-mysql, snmpd.
+Ubuntu 14.04, Nginx, PHP5, Postfix, cron support.
 
 *Sample command:*
 ```
-docker run --name=phpapp \
+docker run --name=sender --restart=allways \
     -v /home/app/:/var/www/app \
     -v /home/log/:/var/www/log \
     -p 80:80 \
     -d -e 'NGINX_REALIP_PROXY=172.17.0.1 \
-    -e 'FRAMEWORK=laravel' \
-    ademas/docker:phpapp
+    ademas/docker:sender
 ```
 
 - - -
