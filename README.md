@@ -251,9 +251,22 @@ docker run --name=nagios \
 ```
 *Nagios admin username: nagiosadmin*
 
+## sender
 
+*Packages:*
 
+Ubuntu 16.04, Nginx, PHP7.0, php-mongodb, php-mysql, snmpd.
 
+*Sample command:*
+```
+docker run --name=phpapp \
+    -v /home/app/:/var/www/app \
+    -v /home/log/:/var/www/log \
+    -p 80:80 \
+    -d -e 'NGINX_REALIP_PROXY=172.17.0.1 \
+    -e 'FRAMEWORK=laravel' \
+    ademas/docker:phpapp
+```
 
 - - -
 
