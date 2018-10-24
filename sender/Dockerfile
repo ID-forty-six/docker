@@ -7,22 +7,19 @@ FROM ubuntu:14.04
 RUN apt update && apt install -y supervisor
 COPY supervisor/* /etc/supervisor/conf.d/
 
-# ++ www server & php  installation
-RUN apt update && apt install -y nginx php5-fpm php5-cli php5-gd php5-mcrypt php5-xmlrpc php5-curl curl
-
-# ++ APP volume
-VOLUME /var/app/
-
-# -- setup nginx
+# ++ www server, php ir postix  installation
+RUN apt update && apt install -y nginx php5-cli php5-gd php5-mcrypt php5-xmlrpc php5-curl curl postfix
 
 # ++ crons support
 RUN apt update && apt install -y cron run-one
 RUN touch /etc/cron.d/app
 RUN chmod 0644 /etc/cron.d/app
 
+# volumes
+VOLUME /var/app/
+VOLUME /etc/postfix/
+VOLUME /etc/nginx/
 VOLUME /etc/cron.d/
-
-# -- Postfix
 
 # set workdir
 WORKDIR /var/app
