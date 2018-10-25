@@ -260,11 +260,11 @@ Ubuntu 14.04, Nginx, PHP5, Postfix, cron support.
 *Sample command:*
 ```
 docker run --name=sender \
-    -v app/:/var/app/ \
-    -v crontab/:/etc/cron.d/ \
-    -v nginx/:/etc/nginx/ \
-    -v postfix/etc/:/etc/psotfix/ \
-    -v postfix/spool/:/var/spool/postfix/ \
+    -v /home/app/:/var/app/ \
+    -v /home/cron/:/etc/cron.d/ \
+    -v /home/nginx/:/etc/nginx/ \
+    -v /home/postfix/etc/:/etc/psotfix/ \
+    -v /home/postfix/spool/:/var/spool/postfix/ \
     -d ademas/docker:sender
 
 ```
