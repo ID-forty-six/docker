@@ -11,6 +11,8 @@ COPY files/postfix.sh /opt/postfix.sh
 # ++ www server, php ir postix  installation
 RUN apt update && apt install -y nginx php5-cli php5-gd php5-mcrypt php5-xmlrpc php5-curl curl postfix lynx
 
+EXPOSE 80
+
 # ++ crons support
 RUN apt update && apt install -y cron run-one
 RUN touch /etc/cron.d/app
