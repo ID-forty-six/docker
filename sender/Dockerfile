@@ -22,7 +22,7 @@ VOLUME /var/spool/postfix/
 VOLUME /etc/postfix/
 VOLUME /etc/nginx/
 VOLUME /etc/cron.d/
- app  crontab  nginx  postfix
+
 # set workdir
 WORKDIR /var/app
 
