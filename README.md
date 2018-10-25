@@ -259,12 +259,14 @@ Ubuntu 14.04, Nginx, PHP5, Postfix, cron support.
 
 *Sample command:*
 ```
-docker run --name=sender --restart=allways \
-    -v /home/app/:/var/www/app \
-    -v /home/log/:/var/www/log \
-    -p 80:80 \
-    -d -e 'NGINX_REALIP_PROXY=172.17.0.1 \
-    ademas/docker:sender
+docker run --name=sender \
+    -v app/:/var/app/ \
+    -v crontab/:/etc/cron.d/ \
+    -v nginx/:/etc/nginx/ \
+    -v postfix/etc/:/etc/psotfix/ \
+    -v postfix/spool/:/var/spool/postfix/ \
+    -d ademas/docker:sender
+
 ```
 
 - - -
