@@ -9,21 +9,11 @@ COPY supervisor/* /etc/supervisor/conf.d/
 COPY files/postfix.sh /opt/postfix.sh
 
 # ++ www server, php ir postix  installation
-RUN apt update && apt install -y nginx php5-cli php5-gd php5-mcrypt php5-xmlrpc php5-curl curl postfix lynx
-
-EXPOSE 80
-
-# ++ crons support
-RUN apt update && apt install -y cron run-one
-RUN touch /etc/cron.d/app
-RUN chmod 0644 /etc/cron.d/app
+RUN apt update && apt install -y curl postfix lynx
 
 # volumes
-VOLUME /var/app/
 VOLUME /var/spool/postfix/
 VOLUME /etc/postfix/
-VOLUME /etc/nginx/
-VOLUME /etc/cron.d/
 
 # set workdir
 WORKDIR /var/app

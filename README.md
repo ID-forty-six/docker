@@ -251,18 +251,15 @@ docker run --name=nagios \
 ```
 *Nagios admin username: nagiosadmin*
 
-## sender
+## postfix
 
 *Packages:*
 
-Ubuntu 14.04, Nginx, PHP5, Postfix, cron support.
+Ubuntu 14.04, Postfix.
 
 *Sample command:*
 ```
-docker run --name=sender \
-    -v /home/app/:/var/app/ \
-    -v /home/cron/:/etc/cron.d/ \
-    -v /home/nginx/:/etc/nginx/ \
+docker run --name=postfix \
     -v /home/postfix/etc/:/etc/psotfix/ \
     -v /home/postfix/spool/:/var/spool/postfix/ \
     -d ademas/docker:sender
