@@ -33,6 +33,8 @@ VOLUME /var/www/log/
 
 # ++ ports
 EXPOSE 80
+# mysql port connection
+EXPOSE 3306
 
 # ++ snmpd install
 

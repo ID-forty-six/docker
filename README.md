@@ -145,6 +145,7 @@ docker run --name=lemp14 \
     -v /home/cron/:/etc/cron.d \
     -p 161:161 \
     -p 80:80 \
+    -p 3306:3306 \
     -d -e 'DB_USER=dbuser' \
     -e 'DB_PASS=dbpass' \
     -e 'DB_NAME=dbname' \
