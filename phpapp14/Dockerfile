@@ -14,12 +14,11 @@ COPY supervisor/* /etc/supervisor/conf.d/
 RUN apt update && apt install -y nginx php5-fpm php5-cli php5-mysql php5-gd php5-mcrypt php5-xmlrpc php5-curl curl
 
 # ++ config
-RUN sed -i 's/;cgi.fix_pathinfo/cgi.fix_pathinfo/' /etc/php5/fpm/php.ini
-RUN sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL \& ~E_NOTICE \& ~E_DEPRECATED \& ~E_STRICT/' /etc/php5/fpm/php.ini
-RUN sed -i 's/max_execution_time = 30/max_execution_time = 0/' /etc/php5/cli/php.ini
-RUN sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL \& ~E_NOTICE \& ~E_DEPRECATED \& ~E_STRICT/' /etc/php5/cli/php.ini
-COPY default_yii2 /etc/nginx/sites-available/default_yii2
-COPY default_laravel /etc/nginx/sites-available/default_laravel
+COPY php_ini/fpm_php.ini /etc/php5/fpm/php.ini
+COPY php_ini/cli_php.ini /etc/php5/cli/php.ini
+COPY nginx/default_yii2 /etc/nginx/sites-available/default_yii2
+COPY nginx/default_plain /etc/nginx/sites-available/default_plain
+COPY nginx/default_laravel /etc/nginx/sites-available/default_laravel
 
 # ++ volumes
 VOLUME /var/www/app/
