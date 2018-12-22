@@ -15,7 +15,9 @@ RUN apt update && apt install -y nginx php5-fpm php5-cli php5-mysql php5-gd php5
 
 # ++ config
 RUN sed -i 's/;cgi.fix_pathinfo/cgi.fix_pathinfo/' /etc/php5/fpm/php.ini
+RUN sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL \& ~E_NOTICE \& ~E_DEPRECATED \& ~E_STRICT/' /etc/php5/fpm/php.ini
 RUN sed -i 's/max_execution_time = 30/max_execution_time = 0/' /etc/php5/cli/php.ini
+RUN sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL \& ~E_NOTICE \& ~E_DEPRECATED \& ~E_STRICT/' /etc/php5/cli/php.ini
 COPY default_yii2 /etc/nginx/sites-available/default_yii2
 COPY default_laravel /etc/nginx/sites-available/default_laravel
 
@@ -25,6 +27,10 @@ VOLUME /var/www/log/
 
 # ++ ports
 EXPOSE 80
+# keli skiringi portai - kad butu galima leisti kelis appsus per skirtingus portus
+EXPOSE 8001
+EXPOSE 8002
+EXPOSE 8003
 
 # ++ snmpd install
 
