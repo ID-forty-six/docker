@@ -29,7 +29,7 @@ fi
 
 if [ "$FRAMEWORK" == "plain" ]; then
 
-    cp /etc/nginx/sites-available/default_yii2 /etc/nginx/sites-available/default
+    cp /etc/nginx/sites-available/default_plain /etc/nginx/sites-available/default
 
     # index file initialization if not exist
     if [ ! -f /var/www/app/index.php ]; then
