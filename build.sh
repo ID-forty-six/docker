@@ -10,6 +10,8 @@ docker build -t phpapp:local phpapp/
 
 docker build -t phpapp18:local phpapp18/
 
+docker build -t phpapp14:local phpapp14/
+
 docker build -t lemp:local lemp/
 
 docker build -t lemp18:local lemp18/
