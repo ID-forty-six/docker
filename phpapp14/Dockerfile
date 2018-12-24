@@ -20,16 +20,17 @@ COPY nginx/default_yii2 /etc/nginx/sites-available/default_yii2
 COPY nginx/default_plain /etc/nginx/sites-available/default_plain
 COPY nginx/default_laravel /etc/nginx/sites-available/default_laravel
 
+RUN wget http://pear.php.net/go-pear.phar
+RUN php go-pear.phar
+RUN pear install Mail-1.4.1
+RUN pear install Mail_Mime-1.10.2
+
 # ++ volumes
 VOLUME /var/www/app/
 VOLUME /var/www/log/
 
 # ++ ports
 EXPOSE 80
-# keli skiringi portai - kad butu galima leisti kelis appsus per skirtingus portus
-EXPOSE 8001
-EXPOSE 8002
-EXPOSE 8003
 
 # ++ snmpd install
 
