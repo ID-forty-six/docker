@@ -20,6 +20,7 @@ COPY nginx/default_yii2 /etc/nginx/sites-available/default_yii2
 COPY nginx/default_plain /etc/nginx/sites-available/default_plain
 COPY nginx/default_laravel /etc/nginx/sites-available/default_laravel
 
+RUN pear install PEAR-1.10.1
 RUN pear install Mail-1.4.1
 RUN pear install Mail_Mime-1.10.2
 RUN pear install Net_SMTP
