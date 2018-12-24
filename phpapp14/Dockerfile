@@ -11,7 +11,7 @@ RUN apt update && apt install -y supervisor
 COPY supervisor/* /etc/supervisor/conf.d/
 
 # ++ www server install 
-RUN apt update && apt install -y nginx php5-fpm php5-cli php5-mysql php5-gd php5-mcrypt php5-xmlrpc php5-curl curl
+RUN apt update && apt install -y nginx php5-fpm php5-cli php5-mysql php5-gd php5-mcrypt php5-xmlrpc php5-curl php5-pear curl
 
 # ++ config
 COPY php_ini/fpm_php.ini /etc/php5/fpm/php.ini
@@ -20,8 +20,6 @@ COPY nginx/default_yii2 /etc/nginx/sites-available/default_yii2
 COPY nginx/default_plain /etc/nginx/sites-available/default_plain
 COPY nginx/default_laravel /etc/nginx/sites-available/default_laravel
 
-RUN wget http://pear.php.net/go-pear.phar
-RUN php go-pear.phar
 RUN pear install Mail-1.4.1
 RUN pear install Mail_Mime-1.10.2
 
