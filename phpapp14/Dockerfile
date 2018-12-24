@@ -22,6 +22,7 @@ COPY nginx/default_laravel /etc/nginx/sites-available/default_laravel
 
 RUN pear install Mail-1.4.1
 RUN pear install Mail_Mime-1.10.2
+RUN pear install Net_SMTP
 
 # ++ volumes
 VOLUME /var/www/app/
