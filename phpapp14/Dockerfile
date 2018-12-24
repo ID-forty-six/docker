@@ -11,7 +11,7 @@ RUN apt update && apt install -y supervisor
 COPY supervisor/* /etc/supervisor/conf.d/
 
 # ++ www server install 
-RUN apt update && apt install -y nginx php5-fpm php5-cli php5-mysql php5-gd php5-mcrypt php5-xmlrpc php5-curl php5-pear curl
+RUN apt update && apt install -y nginx php5-fpm php5-cli php5-mysql php5-gd php5-mcrypt php5-xmlrpc php5-curl php-pear curl
 
 # ++ config
 COPY php_ini/fpm_php.ini /etc/php5/fpm/php.ini
