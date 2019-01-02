@@ -24,7 +24,7 @@ EXPOSE 27017
 ADD set_mongo_auth.sh /set_mongo_auth.sh
 
 # ++ www server install 
-RUN apt update && apt install -y nginx php-fpm php-cli php-gd php-zip php-xmlrpc php-xml php-curl php-intl php-mbstring php-mongodb curl python-xlrd php-bz2 php-mysql
+RUN apt update && apt install -y nginx php-fpm php-cli php-gd php-zip php-xmlrpc php-xml php-curl php-intl php-mbstring php-mongodb curl python-xlrd php-bz2 php-mysql libpng-dev
 
 ADD nginx.conf /etc/nginx/nginx.conf
 
